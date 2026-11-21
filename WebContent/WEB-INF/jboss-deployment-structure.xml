@@ -1,0 +1,12 @@
+<jboss-deployment-structure>
+   <deployment>
+   		<exclusions>
+          <module name="org.apache.commons.lang" slot="main"/>
+        </exclusions>
+        <dependencies>
+          <module name="deployment.ONAPRE_ALL_EJBTier.jar" />
+          <!--  <module name="deployment.ONAPRE_Nueva_Etapa_EJBTier.jar" />-->
+          <module name="org.apache.commons.lang" slot="1.1"/>
+        </dependencies>
+    </deployment>
+</jboss-deployment-structure>

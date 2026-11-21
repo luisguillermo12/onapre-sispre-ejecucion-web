@@ -1,0 +1,125 @@
+.ui-widget, .ui-widget .ui-widget {
+
+       font-size: 11px !important;
+
+       border-color: #c0c0c0;
+
+}
+
+
+
+/* CONFIGURACION DE LOS INPUT FIELD */
+
+.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield{
+    background: #ffffff;
+    color: #000000;
+}
+
+.ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield {
+    font-size: 11px !important;
+    font-family: Arial, sans-serif, Verdana !important;
+    background: #ffffff !important;
+    color: #026890;
+}
+.ui-inputfield.ui-state-focus, .ui-widget-content .ui-inputfield.ui-state-focus, .ui-widget-header .ui-inputfield.ui-state-focus {
+    font-size: 11px !important;
+    font-family: Arial, sans-serif, Verdana !important;
+    background: #ffffff !important;
+    color: #026890 !important;
+}
+
+.ui-inputfield.ui-state-focus{
+	-webkit-box-shadow: #666 1px 1px 5px !important;
+	-moz-box-shadow: #666 1px 1px 5px !important;
+	box-shadow: #666 1px 1px 5px !important;
+}
+
+/* CONFIGURACION DE LOS FIELDSET */
+
+.ui-fieldset-toggleable .ui-fieldset-legend {
+	padding-left:2em;
+	position:relative;
+	cursor:pointer;
+}
+
+.ui-fieldset .ui-fieldset-toggler {
+	position:absolute;
+	top:0.5em;
+	left:0.5em;
+}
+
+/* CONFIGURACION DE LOS RADIO BUTTON */
+
+.ui-radiobutton .ui-radiobutton-box {
+    background: url(#{resource['images/radio_button.png']}) no-repeat !important;
+    height: 14px !important;
+    width: 14px !important;
+	border-style: none !important;
+}
+
+.ui-radiobutton-icon {
+    margin-left: 0px !important;
+    margin-top: -1.5px !important;
+}
+
+.ui-widget .ui-selectoneradio {
+    font-size: 12px !important;
+    font-family: Arial, sans-serif, Verdana !important;
+    color: #004970 !important;
+    font-weight: bold !important;
+}
+
+.wideList .ui-orderlist .ui-orderlist-list{
+    width: 900px;
+    height: 900px;
+}
+
+.ui-picklist-source, .ui-picklist-target {
+     width: 450px !important;
+     height: 250px !important;
+}
+
+
+.ui-multiselectlistbox-listcontainer{overflow:auto;padding:2px !important;;width:850px !important;height: 80px !important;}
+
+.background_dodger_blue{
+	background: #1E90FF  !important ;
+	 color: #FFFFFF;
+}
+
+.ui-selectonemenu label.ui-selectonemenu-label {
+        padding-right: 28px;
+        text-align: left;
+    }
+               
+.background_red{
+	background: #FF0000  !important ;
+}
+
+.background_light_blue{
+	background: #E0FFFF  !important ;
+}
+
+.ui-tree {
+    width: 990px !important ;
+}
+
+.recaptchatable .recaptcha_image_cell {
+    height: 57px !important;
+}
+#recaptcha_area, #recaptcha_table {
+    width: 918px !important;
+}
+
+/*** override primefaces style ***/
+.ui-message-info,.ui-message-error,.ui-message-warn,.ui-message-fatal {
+	border: 0!important;
+	margin: 0!important;
+	padding: 0!important;
+}
+ 
+.ui-message-warn {
+	color: #D8000C!important;
+	background-color: #fff!important;
+}
+

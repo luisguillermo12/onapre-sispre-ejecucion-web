@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv="Pragma" content="no-cache" />
+<script type="text/javascript">
+if(history.forward(1))
+	location.replace(history.forward(1)) 
+
+function openWindow(name, url) {
+	var height = screen.availHeight-30;
+	var width = screen.availWidth-10;
+	    
+	var left = 0;
+	var top = 0;
+	 
+	settings = 'fullscreen=no,resizable=yes,location=no,toolbar=no,menubar=no';
+	settings = settings + ',status=no,directories=no,scrollbars=yes';
+	settings = settings + ',width=' + width +',height=' + height;
+	settings = settings + ',top=' + top +',left=' + left;
+	settings = settings + ',charset=iso-8859-1';
+	var win = window.open(url, '', settings);
+	 
+	win.outerHeight = screen.availHeight;
+	win.outerWidth = screen.availWidth;
+	    
+	win.resizeTo(screen.availWidth, screen.availHeight);
+	 
+	if (!win.focus)
+	win.focus();
+	        
+	return win;
+	}
+	   
+</script>
+
+<h:form id="titleBarForm">
+		<p:spacer height="3"/>
+		<table style="text-align:right;width:1024px;">
+				<tr>
+					<td align="left">
+						<p:panelGrid columns="2">
+							<h:outputText value="Bienvenido (a):" style="text-align:left;width:80px;font-weight:bold;font-size:9px;padding: 0px;"/>
+							<h:outputText value="#{menuBean.usuarioTOLogeado.nombre}" style="text-align:left;font-weight:normal;font-size:9px;padding: 0px;"/>
+						</p:panelGrid>
+					</td>
+					<td align="right">
+						<p:panelGrid columns="2">
+							<h:outputText value="Ente:" style="text-align:left;width:80px;font-weight:bold;font-size:9px;padding: 0px;"/>
+							<h:outputText value="#{menuBean.estructuraPresupuestariaSessionTO.codigoDenominacion}" style="text-align:left;font-weight:normal;font-size:9px;padding: 0px;"/>	
+						</p:panelGrid>
+					</td>
+				</tr>
+			</table>
+		<p:spacer height="3"/>
+
+	<p:menubar styleClass="ui-menubar" style="width: 1024px;" >
+		<p:menuitem value="Saldo Inicial de Caja" url="/faces/apps/saldo_inicial/saldo_inicial.xhtml" styleClass=".ui-menu-item" ajax="false" rendered="#{menuBean.isUserInRol('ADMIN_EJEC_TIII') || menuBean.isUserInRol('ADMIN') || menuBean.isUserInRol('EJECUCION_TIII_ONAPRE')}"/>
+		
+		<p:submenu label="Modificaciones" styleClass="ui-menubar-item-label">
+			<p:menuitem value="Modificaciones De Recursos" url="/faces/apps/modificaciones/modificacion_recursos.xhtml" styleClass=".ui-menu-item" ajax="false" rendered="#{menuBean.isUserInRol('ADMIN_EJEC_TIII') || menuBean.isUserInRol('ADMIN') || menuBean.isUserInRol('EJECUCION_TIII_ENTE') || menuBean.isUserInRol('EJECUCION_TIII_ONAPRE')}"/>
+			<p:menuitem value="Modificaciones De Egresos" url="/faces/apps/modificaciones/modificacion_egresos.xhtml" styleClass=".ui-menu-item" ajax="false" rendered="#{menuBean.isUserInRol('ADMIN_EJEC_TIII') || menuBean.isUserInRol('ADMIN') || menuBean.isUserInRol('EJECUCION_TIII_ENTE') || menuBean.isUserInRol('EJECUCION_TIII_ONAPRE')}"/>
+		</p:submenu>
+
+		<p:submenu label="Ejecución Mensual" styleClass="ui-menubar-item-label" >
+			<p:menuitem value="Ejecución Mensual Recursos" url="/faces/apps/ejecucion_mensual/ejecucion_mensual_recursos.xhtml" styleClass=".ui-menu-item" ajax="false" rendered="#{menuBean.isUserInRol('ADMIN_EJEC_TIII') || menuBean.isUserInRol('ADMIN') || menuBean.isUserInRol('EJECUCION_TIII_ENTE') || menuBean.isUserInRol('EJECUCION_TIII_ONAPRE')}"/>
+			<p:menuitem value="Ejecución Mensual Egresos" url="/faces/apps/ejecucion_mensual/ejecucion_mensual_egresos.xhtml" styleClass=".ui-menu-item" ajax="false" rendered="#{menuBean.isUserInRol('ADMIN_EJEC_TIII') || menuBean.isUserInRol('ADMIN') || menuBean.isUserInRol('EJECUCION_TIII_ENTE') || menuBean.isUserInRol('EJECUCION_TIII_ONAPRE')}"/>			
+		</p:submenu>
+		
+		<p:menuitem value="Cierre de Mes" url="/faces/apps/cierre_mes/cierre_mes.xhtml" styleClass=".ui-menu-item" ajax="false" rendered="#{menuBean.isUserInRol('ADMIN_EJEC_TIII') || menuBean.isUserInRol('ADMIN') || menuBean.isUserInRol('EJECUCION_TIII_ONAPRE')}"/>
+		
+		<p:menuitem value="Reportes" url="/faces/apps/reportes/reportes.xhtml" styleClass=".ui-menu-item" ajax="false" />
+
+		<p:menuitem value="Usuarios" url="/faces/apps/usuarios/lista_usuario_ejecucion.xhtml" styleClass=".ui-menu-item" ajax="false" rendered="#{menuBean.isUserInRol('ADMIN_USER_EJEC_TIII_ONAPRE') || menuBean.isUserInRol('ADMIN') || menuBean.isUserInRol('ADMIN_USER_EJEC_TIII')}"/>
+		
+		<p:menuitem value="Cambiar Organismo" url="/faces/apps/seleccion/seleccion_ente.xhtml?faces-redirect=true" styleClass=".ui-menu-item" ajax="false" rendered="#{menuBean.isUserInRol('ADMIN') || menuBean.isUserInRol('EJECUCION_TIII_ONAPRE')}"/>
+		<f:facet name="options">
+			<p:commandButton value="Ayuda" onclick="dlg.show();" icon="ui-icon-help" style="margin-right:3px;" />  
+	        <p:commandButton value="Salir" url="/faces/login/login.xhtml" onclick="window.location='/SIS_EJEC/faces/login/login.xhtml'" icon="ui-icon-extlink" style="margin-right:3px;" />  
+	    </f:facet> 
+		  
+		
+	</p:menubar>
+	
+	<p:idleMonitor onactive="sessionTimeOutDialog.show();" timeout="#{session.maxInactiveInterval * 1000}" />
+	<p:dialog header="Session Caducada" widgetVar="sessionTimeOutDialog" modal="true" fixedCenter="true" closable="false" width="400" visible="false">
+	     <h:outputText value="La sesión ha caducado" />
+	     <input id="confirmBackToLogin" type="button" value="Presione" onclick="window.location='#{facesContext.externalContext.requestContextPath}/login/login.xhtml';" />
+	</p:dialog>
+	
+	<p:notificationBar position="top" effect="slide" styleClass="top" widgetVar="bar" >
+    	<h:outputText value="#{menuBean.mensajeSISPRE}" style="font-size:36px;color:DodgerBlue;" />
+    	<br />
+    	<p:commandButton value="Ocultar" onclick="PF('bar').hide()" type="button" icon="ui-icon-arrow-1-n"/>
+	</p:notificationBar>
+	
+	<h:panelGroup rendered="#{menuBean.mostrarMensaje()}">
+		<script type="text/javascript">jQuery (document).ready(function(){bar.show();});</script>
+	</h:panelGroup> 
+	
+	<p:dialog header="Ayuda" widgetVar="dlg"  showEffect="fade" hideEffect="explode" modal="true" resizable="false">
+       	<table width="625" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="185" rowspan="2"><h:graphicImage value="/templates/images/Ejecucion_Financiera.png"  style="width: 180px;"/></td>
+			    <td width="440">
+				    <div style="border:0;font-size:10pt;margin:0 auto;padding:5px 0;text-align:center;width:90%;z-index:9999; bottom:10px; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px;">
+				      <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14px;">Sistema para el Control y Seguimiento de la Ejecución Financiera de los Entes Descentralizados</p>
+				      <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: bold; font-size: 11px;">Copyrigh &copy; Oficina Nacional de Presupuesto<br/>Todos los Derechos Reservados <br /> Version 1.0 </p>
+				    </div>
+			    </td>
+			</tr>
+			<tr>
+			  <td style="text-align: center; font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: bold; font-size: 11px; color: green;">
+			    <p>Acroba Reader <a href="https://get.adobe.com/es/reader/" target="_blank" >(Descargar)</a><br/>
+                   Manual de Usuario <a href="http://www.onapre.gob.ve/index.php/publicaciones/descargas/viewcategory/53-instructivos-y-manuales-ano-2016" target="_blank" >(Descargar)</a></p>
+              </td>
+  			</tr>			
+		</table> 
+	</p:dialog>
+	
+</h:form>
+<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    <p:graphicImage value="../../../templates/images/ajaxloadingbar.gif" />
+</p:dialog>
+</html>

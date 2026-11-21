@@ -1,0 +1,238 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+  	<ui:composition template="/templates/base_with_user_menu_tiii.xhtml">
+	<ui:define name="pageContent">	
+	<h:form id="ejecucionEgresosForm">					
+			<p:panel style="width:1024px;" header="EJECUCIÓN MENSUAL EGRESOS">					
+					<p:growl id="messages" showDetail="true" sticky="true" autoUpdate="true"  /> 
+					<p:growl id="messages_list" showDetail="true" autoUpdate="true" closable="true" />
+					<h:panelGrid columns="12" style="text-aling:left;">
+						<h:outputText value="Año:" style="width:60px;font-weight:bold"/>
+						<p:selectOneMenu id="anhosComboBox" styleClass="width:200px;" value="#{situacionMensualEgresosBean.anhoSeleccionado}">
+							<f:selectItem itemLabel="Seleccione" itemValue="-1"/>
+							<f:selectItems value="#{situacionMensualEgresosBean.anhosPresupuesto}"/>
+							<p:ajax event="change" update="guardarBoton, tablaDatos, tablaDatos2" listener="#{situacionMensualEgresosBean.limpiaArreglos}"/>	
+						</p:selectOneMenu>
+						<p:spacer width="20" height="20" /> 
+						<p:outputLabel value="Mes:" style="text-aling:right;font-weight:bold;"/>
+				        <p:selectOneMenu id="mesesCombox" value="#{situacionMensualEgresosBean.mesSeleccionado}" >
+				            <f:selectItem itemLabel="Seleccione" itemValue="-1" />
+				            <f:selectItem itemLabel="Enero" itemValue="1" />
+				            <f:selectItem itemLabel="Febrero" itemValue="2" />
+				            <f:selectItem itemLabel="Marzo" itemValue="3" />
+				            <f:selectItem itemLabel="Abril" itemValue="4" />
+				            <f:selectItem itemLabel="Mayo" itemValue="5" />
+				            <f:selectItem itemLabel="Junio" itemValue="6" />
+				            <f:selectItem itemLabel="Julio" itemValue="7" />
+				            <f:selectItem itemLabel="Agosto" itemValue="8" />
+				            <f:selectItem itemLabel="Septiembre" itemValue="9" />
+				            <f:selectItem itemLabel="Octubre" itemValue="10" />
+				            <f:selectItem itemLabel="Noviembre" itemValue="11" />
+				            <f:selectItem itemLabel="Diciembre" itemValue="12" />
+				            <p:ajax event="change" update="guardarBoton, tablaDatos, tablaDatos2" listener="#{situacionMensualEgresosBean.limpiaArreglos}"/>				            				            
+				        </p:selectOneMenu>
+				        <p:spacer width="20" height="20" /> 
+						<p:outputLabel value="Partida:" style="text-aling:right;font-weight:bold" />
+						<p:selectOneMenu id="partidasComboBox" value="#{situacionMensualEgresosBean.planUnicoCuentasSeleccionada}" style="text-aling:left;" >
+						     <f:selectItem itemLabel="Seleccione" itemValue="-1"/>
+						     <f:selectItems value="#{situacionMensualEgresosBean.aPlanUnicoCuentas}" var="varListaDePartidas" itemLabel="#{varListaDePartidas.partidaConDenominacion}" itemValue="#{varListaDePartidas.partida.substring(0,3)}" />
+						     <p:ajax event="change" update="guardarBoton, tablaDatos, tablaDatos2, messages_list" listener="#{situacionMensualEgresosBean.limpiaArreglos}"/>				     				
+						</p:selectOneMenu>
+						
+						</h:panelGrid>
+					<br/>
+					<h:panelGrid columns="2" style="text-aling:left;">								
+						<p:dataTable  emptyMessage="No Hay Datos Para Mostrar" id="tablaDatos2" var="datos" value="#{situacionMensualEgresosBean.listaDatos}" border="0" cellpadding="0" cellspacing="0">
+							<p:column headerText="CONCEPTOS" id="columna11" width="250">																												
+								<p:outputLabel value="#{datos.descripcion}" style="text-align:left;border:none;font-weight: normal;background:inherit;font-size:10px;"/>										
+							</p:column>
+							<p:column headerText="RECURSOS" id="columna12" width="150" style="text-align:right;">						
+								<p:outputLabel value="#{datos.recursosInfo}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>											
+							</p:column>
+							<p:column headerText="EGRESOS" id="columna13" width="150" style="text-align:right;">						
+								<p:outputLabel value="#{datos.egresosInfo}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>											
+							</p:column>	
+							<p:column headerText="DIFERENCIA" id="columna14" width="150" style="text-align:right;">						
+								<p:outputLabel value="#{datos.diferenciaInfo}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>											
+							</p:column>								
+						</p:dataTable>															
+					</h:panelGrid>
+					<p:spacer height="5"/>
+					<h:panelGrid columns="4">
+						<p:commandButton id="guardarBoton" value="Guardar" style="width:300px;float:right;display:#{situacionMensualEgresosBean.doBloquearGuardar()}" action="#{situacionMensualEgresosBean.doGuardar()}" update="messages, tablaDatos, messages_list" rendered="#{situacionMensualEgresosBean.isUserInRol('EJECUCION_TIII_ENTE') || situacionMensualEgresosBean.isUserInRol('EJECUCION_TIII_ONAPRE') || situacionMensualEgresosBean.isUserInRol('ADMIN')}"/>
+						<p:commandButton id="imprimir" icon="ui-icon-print" style="width:300px;" value="Imprimir" onclick="PrimeFaces.monitorDownload(start,stop)" >
+	   						<p:fileDownload value="#{situacionMensualEgresosBean.file}"/>
+						</p:commandButton>						
+						<h:outputText value="Recuerde colocar el monto con un maximo de dos digitos." style="width:60px;font-weight:bold; color:red;"/>
+		   			</h:panelGrid>
+				
+				<p:spacer height="5"/>
+				
+				    <p:dataTable  emptyMessage="No Hay Datos Para Mostrar" id="tablaDatos" var="registro" value="#{situacionMensualEgresosBean.listaEjecucion}" scrollable="true" scrollWidth="98%" scrollHeight="200" paginator="true" rows="50" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">		  
+						<p:column id="columna0" width="75">
+							<f:facet name="header">
+								<p:outputLabel value="PARTIDA" style="text-align:center;" />
+							</f:facet>
+							<p:outputLabel value="#{registro.partidasConFormato}" style="text-align:left;border:none;width:57px;" />						
+						</p:column>
+					
+						<p:column id="columna1" width="300">
+							<f:facet name="header">
+								<p:outputLabel value="DENOMINACIÓN" style="text-align:left;" />
+							</f:facet>
+							<p:outputLabel value="#{registro.planUnicoCuentas.denominacion}" style="text-align:left;border:none;font-weight: normal;background:inherit;font-size:10px;"/>
+							<f:facet name="footer">
+								<p:outputLabel value="Totales" style="text-align:left;border:none;font-weight:bold;background:inherit;font-size:10px;"/>
+							</f:facet>
+						</p:column>																		
+						 
+						<p:column headerText="ACORDADO" id="columna2" width="100" style="text-align:right;">						
+							<p:outputLabel value="#{registro.montoAcordado}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+							  <f:convertNumber pattern="#,##0" maxFractionDigits="2"/>
+							</p:outputLabel>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{situacionMensualEgresosBean.totalMontoAcordadoFormateado}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>
+							</f:facet>	
+						</p:column>
+						
+						<p:column headerText="DISPONIBLE ACTUAL" id="columna3" width="120" style="text-align:right;">						
+							<p:outputLabel value="#{registro.montoDisponibleAFecha}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+							  <f:convertNumber pattern="#,##0" maxFractionDigits="2"/>
+							</p:outputLabel>
+							<f:facet name="header">
+							      <h:outputText value="DISPONIBLE ACTUAL" title="Corresponde a la disponibilidad del mes anterior más las modificaciones incorporadas en el mes vigente."/>
+							</f:facet>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{situacionMensualEgresosBean.totalMontoDisponibleAFecha}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>
+							</f:facet>	
+						</p:column>
+						 
+						<p:column headerText="PROGRAMADO" id="columna4" width="100" style="text-align:center;">						
+							<p:inputText id="montoProgramado" value="#{registro.montoProgramado}" onfocus="this.select();" style="text-align: right;border:none;width:97px;" maxlength="15">
+							  	<f:convertNumber groupingUsed="true" type="number" maxFractionDigits="2" pattern="#,##0"  />							  
+								<pe:keyFilter for="montoProgramado" mask="currency"/>
+							</p:inputText>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{situacionMensualEgresosBean.totalMontoProgramado}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>
+							</f:facet>						
+						</p:column>						
+						<p:column headerText="COMPROMETIDO" id="columna5" width="100" style="text-align:center;">						
+							<p:inputText id="montoComprometido" value="#{registro.montoComprometido}" onfocus="this.select();" style="text-align: right;border:none;width:97px;" maxlength="15" >
+							  	<f:convertNumber groupingUsed="true" type="number" maxFractionDigits="2" pattern="#,##0" />
+								<pe:keyFilter for="montoComprometido" mask="money"/>
+							</p:inputText>
+							<f:facet name="header">
+							      <h:outputText value="COMPROMETIDO" title="Es la acción administrativa (disposición dada por una autoridad sujeta a una norma legal), por medio de la cual se decide formalmente la realización de un gasto para la adquisición de bienes o servicios; celebración de acuerdos contractuales y transferencias, que por su registro afectan preventivamente la disponibilidad de los créditos presupuestarios."/>
+							</f:facet>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{situacionMensualEgresosBean.totalMontoComprometido}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>
+							</f:facet>						
+						</p:column>
+						
+						<p:column headerText="COMPROMETIDO ACUMULADO" id="columna6" width="100" style="text-align:right;">						
+							<p:outputLabel value="#{registro.compromisoAcumulado}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+							  <f:convertNumber pattern="#,##0" maxFractionDigits="2"/>
+							</p:outputLabel>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{situacionMensualEgresosBean.totalCompromisoAcum}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>
+							</f:facet>						
+						</p:column>												
+						
+						<p:column headerText="CAUSADO" id="columna7" width="100" style="text-align:center;">						
+							<p:inputText id="montoCausado" value="#{registro.montoCausado}" onfocus="this.select();" style="text-align: right;border:none;width:97px;" maxlength="15" >
+							  	<f:convertNumber groupingUsed="true" type="number" maxFractionDigits="2" pattern="#,##0" />
+								<pe:keyFilter for="montoCausado" mask="money"/>
+							</p:inputText>
+							<f:facet name="header">
+							      <h:outputText value="CAUSADO" title="Un gasto se considera causado al hacerse exigible el cumplimiento de la obligación de pago válidamente adquirida y afectará los créditos presupuestarios con su registro definitivo con cargo al presupuesto, independientemente del momento en que se realice el pago."/>
+							</f:facet>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{situacionMensualEgresosBean.totalMontoCausado}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>
+							</f:facet>						
+						</p:column>
+						
+						<p:column headerText="CAUSADO ACUMULADO" id="columna8" width="100" style="text-align:right;">						
+							<p:outputLabel value="#{registro.causadoAcumulado}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+							  <f:convertNumber pattern="#,##0" maxFractionDigits="2"/>
+							</p:outputLabel>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{situacionMensualEgresosBean.totalCausadoAcum}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>
+							</f:facet>						
+						</p:column>
+						
+						<p:column headerText="PAGADO" id="columna9" width="100" style="text-align:center;">						
+							<p:inputText id="montoPagado" value="#{registro.montoPagado}" onfocus="this.select();" style="text-align: right;border:none;width:97px;" maxlength="15"  readonly="#{registro.bloqueoEdicion}" >
+							  	<f:convertNumber groupingUsed="true" type="number" maxFractionDigits="2" pattern="#,##0" />
+								<pe:keyFilter for="montoPagado" mask="money"/>
+							</p:inputText>
+							<f:facet name="header">
+							      <h:outputText value="PAGADO" title="Un gasto se considera pagado cuando éste se efectúe, mediante cualquier instrumento o forma, extinguiéndose con ello la obligación adquirida."/>
+							</f:facet>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{situacionMensualEgresosBean.totalMontoPagado}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>
+							</f:facet>											
+						</p:column>
+						
+						<p:column headerText="PAGADO ACUMULADO" id="columna15" width="100" style="text-align:right;">						
+							<p:outputLabel value="#{registro.montoPagadoAcumulado}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+							  <f:convertNumber pattern="#,##0" maxFractionDigits="2"/>
+							</p:outputLabel>													
+							<f:facet name="footer" >
+								<p:outputLabel value="#{situacionMensualEgresosBean.totalMontoPagadoAcumulado}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>
+							</f:facet>								
+						</p:column>	
+						
+						<p:column headerText="DISPONIBLE" id="columna10" width="100" style="text-align:right;">						
+							<p:outputLabel value="#{registro.montoDisponible}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+							  <f:convertNumber pattern="#,##0" />
+							</p:outputLabel>													
+							<f:facet name="footer" >
+								<p:outputLabel value="#{situacionMensualEgresosBean.totalMontoDisponible}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+									<f:convertNumber pattern="#,##0" />
+								</p:outputLabel>
+							</f:facet>								
+						</p:column>									
+											
+					</p:dataTable>     					
+				
+			   		 
+			</p:panel>
+			
+		</h:form>
+		<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+		    <p:graphicImage value="../../../templates/images/ajaxloadingbar.gif" />
+		</p:dialog>
+	</ui:define>
+	</ui:composition>
+
+</html>

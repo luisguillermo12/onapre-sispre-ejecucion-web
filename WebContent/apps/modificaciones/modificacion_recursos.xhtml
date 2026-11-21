@@ -1,0 +1,125 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	
+  	<ui:composition template="/templates/base_with_user_menu_tiii.xhtml">
+		<ui:define name="pageContent">		 	
+			<h:form id="modRecursosForm" >	
+				<p:growl id="messages" showDetail="true" sticky="true" autoUpdate="true"  /> 
+				<p:growl id="messages_list" showDetail="true" autoUpdate="true" closable="true" />
+				<p:panel style="width:1024px;" header="MODIFICACIONES DE RECURSOS">
+					<h:panelGrid columns="12" style="text-aling:left;">
+						<h:outputText value="Año:" style="width:60px;font-weight:bold;"/>
+						<p:selectOneMenu id="anhosComboBox" styleClass="width:200px;" value="#{modificacionRecursosBean.anhoSeleccionado}">
+							<f:selectItem itemLabel="Seleccione" itemValue="-1"/>
+							<f:selectItems value="#{modificacionRecursosBean.anhosPresupuesto}"/>
+							<p:ajax event="change" update="guardarBoton, modRecursosForm, tablaDatos" listener="#{modificacionRecursosBean.limpiaTabla}"/>	
+						</p:selectOneMenu>
+						<p:spacer width="20" height="20" />
+						<h:outputText value="Mes:" style="width:60px;font-weight:bold;"/>			
+						<p:selectOneMenu  id="mesCmb" value="#{modificacionRecursosBean.mesSeleccionado}" >
+							<f:selectItem itemLabel="Seleccione" itemValue="-1"/>
+							<f:selectItem itemLabel="Enero" itemValue="1"/>
+							<f:selectItem itemLabel="Febrero" itemValue="2"/>
+							<f:selectItem itemLabel="Marzo" itemValue="3"/>
+							<f:selectItem itemLabel="Abril" itemValue="4"/>
+							<f:selectItem itemLabel="Mayo" itemValue="5"/>
+							<f:selectItem itemLabel="Junio" itemValue="6"/>
+							<f:selectItem itemLabel="Julio" itemValue="7"/>
+							<f:selectItem itemLabel="Agosto" itemValue="8"/>
+							<f:selectItem itemLabel="Septiembre" itemValue="9"/>
+							<f:selectItem itemLabel="Octubre" itemValue="10"/>
+							<f:selectItem itemLabel="Noviembre" itemValue="11"/>
+							<f:selectItem itemLabel="Diciembre" itemValue="12"/>
+							<p:ajax event="change" update="guardarBoton, tablaDatos" listener="#{modificacionRecursosBean.limpiaTabla}"/>				
+		                </p:selectOneMenu>
+		                <p:spacer width="20" height="20" />
+						<h:outputText value="Ramo:" style="text-aling:right;font-weight:bold;" />
+						<p:selectOneMenu id="partidasComboBox" value="#{modificacionRecursosBean.planUnicoCuentasSeleccionada}" style="text-aling:left;" >
+						     <f:selectItem itemLabel="Seleccione" itemValue="-1"/>
+						     <f:selectItems value="#{modificacionRecursosBean.planUnicoCuentasByTipoByNivel}" var="varListaDePartidas" itemLabel="#{varListaDePartidas.partidaConDenominacion}" itemValue="#{varListaDePartidas.partida.substring(0,3)}" />
+						     <p:ajax event="change" update="guardarBoton, tablaDatos, messages_list" listener="#{modificacionRecursosBean.limpiaTabla}"/>			     				
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<p:spacer height="10"/>
+					<h:panelGrid columns="4">
+						<p:commandButton id="guardarBoton" value="Guardar" style="width:140px;display:#{modificacionRecursosBean.doBloquearGuardar()}" action="#{modificacionRecursosBean.doGuardar()}" update="messages, tablaDatos, messages_list" rendered="#{modificacionRecursosBean.isUserInRol('EJECUCION_TIII_ENTE') || modificacionRecursosBean.isUserInRol('EJECUCION_TIII_ONAPRE') || modificacionRecursosBean.isUserInRol('ADMIN')}"/>
+						<p:commandButton id="imprimir" icon="ui-icon-print" style="width:140px;" value="imprimir" onclick="PrimeFaces.monitorDownload(start,stop)" >
+   							<p:fileDownload value="#{modificacionRecursosBean.file}"/>
+						</p:commandButton>
+						<h:outputText value="Recuerde colocar el monto con un maximo de dos digitos." style="width:60px;font-weight:bold; color:red;"/>
+		   			</h:panelGrid>
+		   			<p:spacer height="10px"/>
+				    <p:dataTable emptyMessage=""  id="tablaDatos" var="registro" value="#{modificacionRecursosBean.listaModificacionesRecursos}"   width="1080" paginator="true" rows="50" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" scrollable="true" scrollHeight="300" scrollWidth="98%">
+						<p:column  width="75" headerText="RAMO">
+							<p:outputLabel value="#{registro.partidasConFormato}" style="text-align:left;border:none;width:57px;"  />
+						</p:column>
+	
+						<p:column  headerText="DENOMINACIÓN" width="300">
+							<p:outputLabel value="#{registro.planUnicoCuentas.denominacion}" style="text-align:left;border:none;font-weight: normal;background:inherit;font-size:10px;"  />
+							<f:facet name="footer">
+								<p:outputLabel value="Totales" style="text-align:right;border:none;width:100px;font-weight:bold;"/>
+							</f:facet>					
+						</p:column>
+						
+						<p:column headerText="LEY-ACORDADO" width="100" style="text-align:right;">
+							<p:outputLabel value="#{registro.montoLey}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+							  <f:convertNumber pattern="#,##0" />
+							</p:outputLabel>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{modificacionRecursosBean.totalMontoLeyFormateado}" style="text-align:right;border:none;width:100px;font-weight:bold;"/>
+							</f:facet>						
+						</p:column>
+						
+						<p:column headerText="INCREMENTO" width="100" style="text-align:right;">
+							<p:inputText id="montoIncrementoField" value="#{registro.montoIncremento}" style="text-align: right;border:none;width:97px;" maxlength="15" onfocus="this.select();">
+							  <f:convertNumber groupingUsed="true" type="number" maxFractionDigits="2" pattern="#,##0" />
+							  <pe:keyFilter for="montoIncrementoField" mask="money"/>
+							</p:inputText>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{modificacionRecursosBean.totalMontoIncrementoFormateado}" style="text-align:right;border:none;width:100px;font-weight:bold;"/>
+							</f:facet>						
+						</p:column>
+						
+						<p:column headerText="DISMINUCION" width="100" style="text-align:right;">
+							<p:inputText id="montoDisminucionField" value="#{registro.montoDisminucion}" style="text-align: right;border:none;width:97px;" maxlength="15" onfocus="this.select();">
+							  <f:convertNumber groupingUsed="true" type="number" maxFractionDigits="2" pattern="#,##0" />
+							  <pe:keyFilter for="montoDisminucionField" mask="money"/>
+							</p:inputText>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{modificacionRecursosBean.totalMontoDisminucionFormateado}" style="text-align:right;border:none;width:100px;font-weight:bold;"/>
+							</f:facet>						
+						</p:column>
+						
+						<p:column headerText="MODIFICACION" width="100" style="text-align:right;">
+							<p:outputLabel value="#{registro.montoIncremento-registro.montoDisminucion}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+							  <f:convertNumber groupingUsed="true" type="number" maxFractionDigits="2" pattern="#,##0" />
+							</p:outputLabel>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{modificacionRecursosBean.totalMontoModificacionFormateado}" style="text-align:right;border:none;width:100px;font-weight:bold;"/>
+							</f:facet>						
+						</p:column>
+						
+						<p:column headerText="PPTO. MODIFICADO" width="100" style="text-align:right;">
+							<p:outputLabel value="#{registro.montoLey+registro.montoIncremento-registro.montoDisminucion}" style="text-align:right;border:none;width:100px;font-weight:bold;">
+								<f:convertNumber groupingUsed="true" type="number" maxFractionDigits="2" pattern="#,##0" />
+							</p:outputLabel>
+							<f:facet name="footer" >
+								<p:outputLabel value="#{modificacionRecursosBean.totalMontoPptoModificacionFormateado}" style="text-align:right;border:none;width:100px;font-weight:bold;"/>
+							</f:facet>						
+						</p:column>
+					</p:dataTable>     					
+				</p:panel>
+			</h:form>
+			<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+			    <p:graphicImage value="../../../templates/images/ajaxloadingbar.gif" />
+			</p:dialog>
+		</ui:define>
+	</ui:composition>
+
+</html>

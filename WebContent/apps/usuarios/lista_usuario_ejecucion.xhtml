@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:composition template="/templates/base_with_user_menu_tiii.xhtml">
+	<ui:define name="pageContent">
+		<h:form id="form">
+			<p:growl id="messagesUsuario" showDetail="true"/>						
+			<p:spacer height="10"/>			
+			<p:panel header="Lista Usuarios" style="width:1024px;">
+				<p:spacer height="10"/>
+				<p:fieldset legend="Usuarios del Ente" style="margin-bottom:20px" border="0">	
+					<h:panelGrid columns="5" width="900" border="0" style="right:10px;">
+						<h:outputText value="CTA: Consulta de Ejecución" styleClass="onapre_label" style="border: 1px #CCCCCC solid; padding: 5px;"/>
+						<h:outputText value="CE: Carga Ente Ejecución" styleClass="onapre_label" style="border: 1px #CCCCCC solid; padding: 5px;"/>
+						<h:outputText value="AE: Administrador Ejecución" styleClass="onapre_label" style="border: 1px #CCCCCC solid; padding: 5px;"/>
+						<h:outputText value="AUE: Administrador Usuarios Ente" styleClass="onapre_label" style="border: 1px #CCCCCC solid; padding: 5px;"/>						
+					</h:panelGrid>				
+					<p/><p/>		
+					<p:dataTable id="listaUsuariosTable" var="aUsuario" value="#{listaUsuariosBean.usuarios}" emptyMessage="No posee usuario asociado" width="900" scrollable="true" scrollHeight="350" filteredValue="#{listaUsuariosBean.filtroUsuario}">
+						<p:column filterBy="#{aUsuario.username}" headerText="Usuario" style="width:120px; text-align:center;">
+							<p:commandLink id="idCodigoLink" update=":form:modalDialog" onstart="dlg.show();" >
+								<h:outputText value="#{aUsuario.username}" />
+								<f:setPropertyActionListener value="#{aUsuario}" target="#{listaUsuariosBean.usuarioTOSeleccionado}"/>  
+							</p:commandLink>
+						</p:column>		
+						<p:column filterBy="#{aUsuario.nombreApellido}" headerText="Nombre" filterMatchMode="contains">
+							<h:outputText value="#{aUsuario.nombreApellido}" />
+						</p:column>						
+						<p:column id="columnaPerfilAdmin" style="width:15px;">
+							<f:facet name="header">
+								<h:outputText value="CTA" />
+							</f:facet>
+							<p:selectBooleanCheckbox id="ADCheck" value="#{aUsuario.rolCTA}" />
+						</p:column>
+						<p:column id="columnaPerfilAnaImputa" style="width:15px;">
+							<f:facet name="header">
+								<h:outputText value="AE" />
+							</f:facet>
+							<p:selectBooleanCheckbox id="AICheck" value="#{aUsuario.rolAE}" />
+						</p:column>
+						<p:column id="columnaPerfilAnaRRHH" style="width:15px;">
+							<f:facet name="header">
+								<h:outputText value="CE" />
+							</f:facet>
+							<p:selectBooleanCheckbox id="ARCheck" value="#{aUsuario.rolCE}" />
+						</p:column>		
+						<p:column id="columnaPerfilAdmUserEnte" style="width:15px;">
+							<f:facet name="header">
+								<h:outputText value="AUE" />
+							</f:facet>
+							<p:selectBooleanCheckbox id="AUECheck" value="#{aUsuario.rolAUE}" />
+						</p:column>						
+					</p:dataTable>							
+					<h:panelGrid width="400" columns="3"  border="0" style="text-align:center; right:10px;">
+						<p:commandButton id="NewButton" value="Nuevo Usuario" update=":form:modalDialog" oncomplete="dlg.show();">
+							<f:setPropertyActionListener value="#{null}" target="#{listaUsuariosBean.usuarioTOSeleccionado}"/>  
+						</p:commandButton>
+						<p:commandButton value="Guardar"  action="#{listaUsuariosBean.doGuardar}" update="messagesUsuario" rendered="true"/>						
+					</h:panelGrid>
+				</p:fieldset>		
+				<p:spacer height="30"/>			
+			</p:panel>
+			<p:dialog id="modalDialog" header="Datos Usuario" widgetVar="dlg" resizable="false" modal="true" dynamic="true" onHide="dlg.remove();" onShow="document.getElementById('form:nameField').focus();" closable="false">  
+			  	  <p:ajax event="close" update="messagesUsuarioNuevo" listener="#{listaUsuariosBean.handleClose}"/>
+        	  	  <p:outputPanel id="usuarioPanel" style="text-align:left;" layout="block"> 
+			  	  <p:messages id="messagesUsuarioNuevo" showDetail="true" autoUpdate="true" closable="true" />
+			        <h:panelGrid columns="2" style="margin-bottom:10px">  						
+						<h:outputText value="Usuario:"  styleClass="onapre_label"/>
+						<h:outputText id="userNameField" value="#{listaUsuariosBean.userName}" />
+						<h:outputText value="Nombre:"  styleClass="onapre_label"/>												
+						<p:inputText id="nameField" name="nameField" value="#{listaUsuariosBean.usuarioTOSeleccionado.nombre}" tabindex="0" />
+						<h:outputText value="Apellido:"  styleClass="onapre_label"/>												
+						<p:inputText value="#{listaUsuariosBean.usuarioTOSeleccionado.apellido}" tabindex="2" />
+						<h:outputText value="Cédula:"  styleClass="onapre_label"/>
+						<p:inputText id="cedulaField" value="#{listaUsuariosBean.usuarioTOSeleccionado.cedula}" tabindex="1" >
+							<p:ajax event="blur" update="usuarioPanel" listener="#{listaUsuariosBean.actualizarUserName()}"/>
+						</p:inputText>						
+						<h:outputText value="Teléfono:"  styleClass="onapre_label"/>												
+						<p:inputText value="#{listaUsuariosBean.usuarioTOSeleccionado.telefono}" tabindex="3" />
+						<h:outputText value="Correo:"  styleClass="onapre_label"/>												
+						<p:inputText value="#{listaUsuariosBean.usuarioTOSeleccionado.correo}" tabindex="4" />
+			        </h:panelGrid> 			        
+					<p:dataTable id="rolTable" var="aUsuarioNuevo" value="#{listaUsuariosBean.usuarioTOSeleccionado}" width="300px">						
+						<p:column id="columnaPerfilAdmin" style="width:10px;">
+							<f:facet name="header">
+								<h:outputText value="CTA" />
+							</f:facet>
+							<p:selectBooleanCheckbox id="ADCheckModal" value="#{listaUsuariosBean.usuarioTOSeleccionado.rolCTA}" />
+						</p:column>
+						<p:column id="columnaPerfilAnaImputa" style="width:10px;">
+							<f:facet name="header">
+								<h:outputText value="AE" />
+							</f:facet>
+							<p:selectBooleanCheckbox id="AICheckModal" value="#{listaUsuariosBean.usuarioTOSeleccionado.rolAE}" />
+						</p:column>
+						<p:column id="columnaPerfilAnaRRHH" style="width:10px;">
+							<f:facet name="header">
+								<h:outputText value="CE" />
+							</f:facet>
+							<p:selectBooleanCheckbox id="ARCheckModal" value="#{listaUsuariosBean.usuarioTOSeleccionado.rolCE}" />
+						</p:column>
+						<p:column id="columnaPerfilAdmUsuariosEnte" style="width:10px;">
+							<f:facet name="header">
+								<h:outputText value="AUE" />
+							</f:facet>
+							<p:selectBooleanCheckbox id="AUECheckModal" value="#{listaUsuariosBean.usuarioTOSeleccionado.rolAUE}" />
+						</p:column>															
+					</p:dataTable>
+					<p/>
+			        <p:commandButton id="submitButton" value="Aceptar"  update="listaUsuariosTable,NewButton,usuarioPanel,messagesUsuarioNuevo" actionListener="#{listaUsuariosBean.guardarUsuario()}"/>
+			        <p:commandButton  value="Resetear Contraseña"  update="listaUsuariosTable,NewButton,usuarioPanel,messagesUsuarioNuevo" actionListener="#{listaUsuariosBean.resetearClave()}"/>
+					<p:commandButton value="Salir" onclick="dlg.hide();dlg.remove();" update="listaUsuariosTable,NewButton,usuarioPanel,messagesUsuarioNuevo"/>    
+			    </p:outputPanel> 
+			</p:dialog>	    
+			<p:idleMonitor onactive="sessionTimeOutDialog.show();" timeout="#{session.maxInactiveInterval * 1000}" />
+           	<p:dialog header="Session Caducada" widgetVar="sessionTimeOutDialog" modal="true" fixedCenter="true" closable="false" width="400" visible="false">
+               	 <h:outputText value="La sessión ha caducado" />
+                	<input id="confirmBackToLogin" type="button" value="Presione" onclick="window.location='#{facesContext.externalContext.requestContextPath}/login/login.xhtml';" />
+           	</p:dialog>		
+		</h:form>
+		<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide();" />
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+		    <p:graphicImage value="../../../templates/images/ajaxloadingbar.gif" />
+		</p:dialog>		
+	  </ui:define>
+	</ui:composition>
+</html>

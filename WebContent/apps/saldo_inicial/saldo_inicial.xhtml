@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+  	<ui:composition template="/templates/base_with_user_menu_tiii.xhtml">
+	<ui:define name="pageContent">		
+		 	
+		<h:form id="presupuestoGastosForm">
+			<p:panel style="width:1024px;" header="SALDO DE CAJA INICIAL">
+			<p:growl id="messages_list" showDetail="true" autoUpdate="true" closable="false" />
+			<h:panelGrid columns="3">
+				<h:outputText value="Año" style="width:60px;"/>
+				<p:selectOneMenu id="anhosComboBox" styleClass="width:200px;" value="#{saldoInicialCajaBean.anhoSeleccionado}" required="true" requiredMessage="Seleccione Año">
+					<f:selectItem itemLabel="Seleccione" itemValue="-1"/>
+					<f:selectItems value="#{saldoInicialCajaBean.anhosPresupuesto}"/>
+					<p:ajax event="change" update="tablaDatos" listener="#{saldoInicialCajaBean.limpiaArreglos}"/>	 
+				</p:selectOneMenu>
+				<p:commandButton id="guardarField" value="Guardar Saldo Inicial" style="width:200px;float:right;" action="#{saldoInicialCajaBean.doGuardar()}"  update="tablaDatos">
+					<p:confirm header="Confirmación" message="¿Está Seguro?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+		        	<p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="messages_list"/>
+		        	<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" update="messages_list"/>
+			    </p:confirmDialog>
+			</h:panelGrid>
+			<p:spacer height="5"/>
+				
+				    <p:dataTable  emptyMessage="No Hay Datos Para Mostrar" id="tablaDatos" var="registro" value="#{saldoInicialCajaBean.saldoInicialCaja}" scrollable="true" scrollWidth="98%" scrollHeight="100">		  
+						<p:column id="columna0" width="300">
+							<f:facet name="header">
+								<p:outputLabel value="Denominación" style="text-align:left;" />
+							</f:facet>
+							<p:outputLabel value="Saldo Inicial de Caja" style="text-align:left;border:none;font-weight: normal;background:inherit;font-size:10px;"/>
+						</p:column>	
+						<p:column headerText="Monto" id="columna1" width="100" style="text-align:center;">						
+							<p:inputText id="montoCajaField" value="#{registro.montoCaja}" onfocus="this.select();" style="text-align: right;border:none;width:97px;" maxlength="15" >
+							  	<f:convertNumber groupingUsed="true" type="number" maxFractionDigits="2" pattern="#,##0" />
+								<pe:keyFilter for="montoCajaField" mask="money"/>
+							</p:inputText>		
+						</p:column>		
+					</p:dataTable>     					
+				
+			</p:panel>	
+		</h:form>
+		<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+		    <p:graphicImage value="../../../templates/images/ajaxloadingbar.gif" />
+		</p:dialog>
+	</ui:define>
+	</ui:composition>
+
+</html>

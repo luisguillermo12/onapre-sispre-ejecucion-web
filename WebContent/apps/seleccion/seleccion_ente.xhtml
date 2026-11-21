@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<ui:composition template="/templates/base_with_user_no_menu.xhtml">
+	<ui:define name="pageContent">
+		<h:form id="form">
+			<p:messages id="messagesLista" showDetail="true" autoUpdate="true" closable="true" />
+			<p:spacer height="10"/>
+			<p:panel header="SISPRE TITULO III - EJECUCIÓN FINANCIERA" style="width:1024px;">
+				<p:dataTable id="listaOrganosTable" var="aOrgano" widgetVar="seleccionTable" value="#{seleccionEnteBean.listaOrganos}" selection="#{seleccionEnteBean.organoEnteReceptorSeleccionadoTO}" rowKey="#{aOrgano.id}" selectionMode="single" rowStyleClass="#{seleccionEnteBean.fondo(aOrgano.tipo)}" scrollable="true" scrollHeight="400" filteredValue="#{seleccionEnteBean.filtro}">
+					<p:ajax event="rowSelect"  listener="#{seleccionEnteBean.onRowSelect}" rendered="#{aOrgano.tipo}"/>
+					
+					<p:column filterBy="#{aOrgano.codigo}" filterMatchMode="startsWith" style="width:120px; text-align:center;">
+						<f:facet name="header">
+							<h:outputText value="Código" />
+						</f:facet>
+						<p:commandLink id="idCodigoLink" action="#{seleccionEnteBean.doMenu(aOrgano)}" >
+							<h:outputText value="#{aOrgano.codigo}" styleClass="#{seleccionEnteBean.fondo(aOrgano.tipo)}"/>
+						</p:commandLink>
+	
+					</p:column>
+	
+					<p:column headerText="Denominación" filterBy="#{aOrgano.denominacion}" filterMatchMode="contains">
+						<h:outputText value="#{aOrgano.denominacion}" />
+					</p:column>
+	
+				</p:dataTable>
+				<p/>
+				<p:commandButton value="Salir" onclick="window.close()" icon="ui-icon-extlink" style="margin-right:3px;"/>
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+
+	</ui:composition>
+
+</html>

@@ -1,0 +1,1306 @@
+/* Generales */
+.onapre_right_col_aligned {
+	font-family: Arial;
+	text-align: right;
+	font-size: 10px;
+	border-width: thick;
+	padding: 1px
+}
+
+.onapre_image_border {
+	border-color: #C0C0C0;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.onapre_fragment_page_title {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #727375;
+}
+
+.onapre_content_text {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #727375;
+}
+
+.onapre_content_text_title {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	text-align: center
+}
+
+.onapre_error_message {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FF0000;
+}
+
+.onapre_content_text_bold {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #727375;
+}
+
+.onapre_content_text_black {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+
+.onapre_contect_text_black_bold {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+
+.onapre_field_label {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #727375;
+}
+
+.onapre_input_field {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+
+.onapre_text_left_aligned {
+	text-align: left;
+}
+
+.onapre_text_center_aligned {
+	text-align: center;
+}
+
+.onapre_text_right_aligned {
+	text-align: right;
+}
+
+.onapre_left_aligned {
+	align: left;
+}
+
+.onapre_center_aligned {
+	align: center;
+}
+
+.onapre_right_aligned {
+	align: right;
+}
+
+.onapre_top_aligned {
+	vertical-align: top;
+	vertical-align: text-top;
+}
+
+.onapre_middle_aligned {
+	vertical-align: middle;
+}
+
+.onapre_bottom_aligned {
+	vertical-align: bottom;
+	vertical-align: text-bottom;
+}
+
+/* basic_template */
+.onapre_wellcome_message {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+/* logged_user_template */
+.onapre_logged_user_menu_width {
+	width: 200px;
+}
+
+.onapre_logged_user_menu_content_separation {
+	width: 2px;
+}
+
+//
+StyleSifpre
+body {
+	background-image: url(/ONAPRE_WEB2Tier/theme/Franja01.jpg);
+	margin-left: 0px;
+	scrollbar-arrow-color: #0000FF;
+	scrollbar-track-color: #CDE4FE;
+	scrollbar-shadow-color: #CDE4FE;
+	scrollbar-face-color: #CDE4FE;
+	scrollbar-highlight-color: #CDE4FE;
+	scrollbar-darkshadow-color: #7DA7D9;
+	scrollbar-3dlight-color: #7DA7D9;
+}
+
+{
+padding-left
+
+
+
+
+:
+
+
+ 
+
+
+10
+px
+
+
+
+
+;
+padding-top
+
+
+
+
+:
+
+
+ 
+
+
+2
+px
+
+
+
+
+;
+}
+.AlineaTxtBox {
+	padding-left: 5px;
+	padding-top: 2px;
+}
+
+.AlineaTxtBoxBorder {
+	padding-left: 5px;
+	padding-top: 2px;
+	border: 1px solid #000099;
+}
+
+.branch {
+	display: none;
+	margin-left: 10px;
+}
+
+.celda {
+	BORDER-BOTTOM: 1px solid rgb(0, 0, 0);
+	BORDER-TOP: 1px solid #666666;
+	BORDER-LEFT: 1px solid #666666;
+	BORDER-RIGHT: 1px solid rgb(0, 0, 0);
+}
+
+.celdaAmarillo {
+	padding-left: 2px;
+	border: hidden;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	color: #000000;
+	background-color: #FFFFCC;
+	scrollbar-arrow-color: #FBBB26;
+	scrollbar-track-color: #FFFFCC;
+	scrollbar-shadow-color: #FFFFCC;
+	scrollbar-face-color: #FFFFCC;
+	scrollbar-highlight-color: #FFFFCC;
+	scrollbar-darkshadow-color: #FBBB26;
+	scrollbar-3dlight-color: #FBBB26;
+}
+
+.celdaAzul {
+	border: 1px solid #000066;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	color: #000000;
+}
+
+.CheckBoxPeq {
+	height: 10px;
+	width: 10px;
+}
+
+.EtiquetaTxtBox {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: text-top;
+	padding-top: 3px;
+	color: #000099;
+}
+
+.EtiquetaTxt8Derecha {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000099;
+}
+
+.EtiquetaTxt8DerechaNormal {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: right;
+	font-weight: normal;
+	vertical-align: middle;
+	color: #000099;
+}
+
+.EtiquetaTxt8IzquierdaAbajo {
+	font-family: Tahoma;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: normal;
+	vertical-align: text-bottom;
+	color: #000099;
+	height: 20px;
+}
+
+.EtiquetaTxt8IzquierdaAbajoBold {
+	font-family: Tahoma;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: text-bottom;
+	color: #000099;
+	padding-bottom: 3px;
+	height: 20px;
+}
+
+.EtiquetaTxt9 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000099;
+}
+
+.EtiquetaTxt9Centrado {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-style: normal;
+	text-align: center;
+	vertical-align: middle;
+	color: #000000;
+}
+
+.EtiquetaTxtBox9IzquierdaBordeAbajo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: normal;
+	vertical-align: text-bottom;
+	color: #000099;
+}
+
+.EtiquetaTxtBox9 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-style: normal;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: text-top;
+	padding-top: 3px;
+	color: #000099;
+}
+
+.EtiquetaTxtBox10 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: text-top;
+	padding-top: 3px;
+	color: #000099;
+}
+
+.EtiquetaTxtBox10Izquierda {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: text-top;
+	padding-top: 3px;
+	color: #000099;
+}
+
+.EtiquetaTxtBox10IzquierdaAbajo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: text-bottom;
+	color: #000099;
+}
+
+.EtiquetaTxtBox10IzquierdaMedio {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: bottom;
+	color: #000099;
+}
+
+.EtiquetaTxtBox10IzquierdaNegro {
+	font-family: Verdana, Arial, Helvetica, sans-se ?      rif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: text-top;
+	padding-top: 2px;
+	color: #000000;
+	padding-left: 5px;
+}
+
+.EtiquetaTxt10IzquierdaAbajo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: normal;
+	vertical-align: text-bottom;
+	color: #000099;
+	height: 20px;
+}
+
+.EtiquetaTxt10IzquierdaAbajoBold {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: text-bottom;
+	color: #000099;
+	height: 20px;
+	padding-bottom: 3px;
+}
+
+.EtiquetaTxt12 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: normal;
+	vertical-align: middle;
+	color: #000099;
+}
+
+.EtiquetaTxt12BoldMedio {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000099;
+}
+
+.FondoGris {
+	background-color: #B7C6DD;
+	border-top-style: double;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: none;
+	border-top-width: thin;
+	border-bottom-width: thin;
+	border-top-color: #006699;
+	border-bottom-color: #006699;
+}
+
+.FormatTextMonto {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: right;
+	width: 120px;
+	height: 22px;
+	font-size: 12px;
+}
+
+.inputlov {
+	background-color: TRASPARENT;
+	color: rgb(0, 0, 0);
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	font-weight: normal;
+	BORDER-BOTTOM: none;
+	BORDER-TOP: none;
+	BORDER-LEFT: none;
+	BORDER-RIGHT: none;
+	text-align: right;
+	cursor: hand;
+}
+
+.inputlovIzquierdo {
+	background-color: TRASPARENT;
+	color: rgb(0, 0, 0);
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: normal;
+	BORDER-BOTTOM: none;
+	BORDER-TOP: none;
+	BORDER-LEFT: none;
+	BORDER-RIGHT: none;
+	vertical-align: middle;
+	text-align: left;
+}
+
+.inputlovTablaTitulo7 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	font-style: normal;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000000;
+	BORDER-BOTTOM: none;
+	BORDER-TOP: none;
+	BORDER-LEFT: none;
+	BORDER-RIGHT: none;
+}
+
+.inputlovTablaTitulo8 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000000;
+	BORDER-BOTTOM: none;
+	BORDER-TOP: none;
+	BORDER-LEFT: none;
+	BORDER-RIGHT: none;
+}
+
+.inputlovPeq {
+	background-color: TRASPARENT;
+	color: rgb(0, 0, 0);
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 6pt;
+	font-weight: normal;
+	BORDER-BOTTOM: none;
+	BORDER-TOP: none;
+	BORDER-LEFT: none;
+	BORDER-RIGHT: none;
+	text-align: right;
+}
+
+.inputtablehidden {
+	background-color: rgb(255, 255, 255);
+	EMPTY-CELLS: SHOW;
+	BORDER-BOTTOM: hidden;
+	BORDER-TOP: hidden;
+	BORDER-LEFT: hidden;
+	BORDER-RIGHT: hidden;
+}
+
+.inputtdtext {
+	cursor: text;
+	border: 1px solid RGB(102, 102, 102);
+	background-color: rgb(255, 255, 255);
+}
+
+.InputTxtBoxUnaCelda {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000099;
+	height: 18px;
+	text-align: right;
+}
+
+.InputTxtBoxUnaCeldaColorNegro {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000000;
+	height: 18px;
+	text-align: right;
+}
+
+.LabelTxtBoxUnaCelda {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: middle;
+	padding-top: 2px;
+	color: #000099;
+}
+.LabelTxtBoxUnaCelda10 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: middle;
+	padding-top: 2px;
+	color: #000099;
+}
+.LabelTxtBoxUnaCeldaCentrada {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	text-align: center;
+	vertical-align: top;
+	padding-top: 2px;
+	color: #000099;
+}
+
+.LabelTxtBoxUnaCeldaIzquierda {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+	padding-top: 2px;
+	color: #000099;
+}
+
+.LineaAzul {
+	padding-left: 5px;
+	padding-top: 2px;
+	border: #006699;
+	color: #006699;
+}
+
+.LinkLista {
+	text-decoration: none;
+	cursor: hand;
+	color: #000099;
+}
+
+.RadioButtonPeq {
+	height: 10px;
+	width: 10px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.SelectListaFija {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	width: 520px;
+	height: 85px;
+	vertical-align: top;
+}
+
+.SelectListaFija1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	width: 520px;
+	height: 22px;
+}
+
+.SelectPeq {
+	height: 22px;
+	width: 340px;
+	font-size: 9px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.SelectPeq2 {
+	color: #000000;
+	height: 22px;
+	width: 160px;
+	font-size: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.TablaTitulo7 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	font-style: normal;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000000;
+	BORDER-TOP: hidden;
+	BORDER-LEFT: hidden;
+	BORDER-BOTTOM: hidden;
+	BORDER-RIGHT: 2px solid #000066;
+}
+
+.TablaTitulo8 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000000;
+	BORDER-TOP: hidden;
+	BORDER-LEFT: hidden;
+	BORDER-BOTTOM: hidden;
+	BORDER-RIGHT: 2px solid #000066;
+}
+
+.TablaTitulo8_Anteproyecto {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000000;
+	border: medium none;
+	background: inherit;
+}
+
+.TablaTitulo9_Anteproyecto {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: left;
+	vertical-align: bottom;
+	color: #000000;
+	border: medium none;
+	background: inherit;
+}
+
+.TablaTitulo12_Redistribucion {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-style: normal;
+	text-align: right;
+	vertical-align: middle;
+	color: #000000;
+	border: medium none;
+	background: inherit;
+	font-weight: bold;
+}
+
+.TablaTitulo9_Redistribucion {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: bottom;
+	color: #000000;
+	border: medium none;
+	background: inherit;
+}
+
+.TablaTituloBorde {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000099;
+	BORDER-TOP: 2px solid #FFFFFF;
+	BORDER-LEFT: 2px solid #FFFFFF;
+	BORDER-BOTTOM: #FFFFFF;
+	BORDER-RIGHT: 2px solid #000066;
+}
+
+.TablaTituloBorde8 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000099;
+	BORDER-TOP: 2px solid #FFFFFF;
+	BORDER-LEFT: 2px solid #FFFFFF;
+	BORDER-BOTTOM: #FFFFFF;
+	BORDER-RIGHT: 2px solid #000066;
+}
+
+.TablaTituloBorde7 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000099;
+	BORDER-TOP: 2px solid #FFFFFF;
+	BORDER-LEFT: 2px solid #FFFFFF;
+	BORDER-BOTTOM: #FFFFFF;
+	BORDER-RIGHT: 2px solid #000066;
+}
+
+.tableRow {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: rgb(0, 0, 0);
+	font-size: 6pt;
+	font-weight: normal;
+	text-align: center;
+	background-color: rgb(255, 255, 255);
+	margin: 0px;
+	padding: 0px;
+	vertical-align: middle;
+}
+
+.renglon {
+	background-color: rgb(204, 204, 204);
+	BORDER-BOTTOM: 1px solid rgb(0, 0, 0);
+	BORDER-TOP: 1px solid rgb(0, 0, 0);
+	BORDER-LEFT: 1px solid rgb(0, 0, 0);
+	BORDER-RIGHT: 1px solid rgb(0, 0, 0);
+	height: 15px;
+}
+
+.renglons {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	background-color: inherit;
+	BORDER-BOTTOM: 1px solid rgb(204, 204, 204);
+	BORDER-TOP: 1px solid white;
+	BORDER-LEFT: 1px solid white;
+	BORDER-RIGHT: 1px solid rgb(204, 204, 204);
+	height: 15px;
+}
+
+.renglonsPeq {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	background-color: inherit;
+	BORDER-BOTTOM: 1px solid rgb(204, 204, 204);
+	BORDER-TOP: 1px solid white;
+	BORDER-LEFT: 1px solid white;
+	BORDER-RIGHT: 1px solid rgb(204, 204, 204);
+}
+
+.renglonsPeqAnte {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	background-color: inherit;
+	BORDER-BOTTOM: 1px solid rgb(204, 204, 204);
+	BORDER-TOP: 1px solid white;
+	BORDER-LEFT: 1px solid white;
+	BORDER-RIGHT: 1px solid rgb(204, 204, 204);
+}
+
+.renglonsGde {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	background-color: inherit;
+	BORDER-BOTTOM: 1px solid rgb(204, 204, 204);
+	BORDER-TOP: 1px solid white;
+	BORDER-LEFT: 1px solid white;
+	BORDER-RIGHT: 1px solid rgb(204, 204, 204);
+	height: 20px;
+}
+
+.renglonsGde12 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7px;
+	background-color: inherit;
+	BORDER-BOTTOM: 1px solid rgb(204, 204, 204);
+	BORDER-TOP: 1px solid white;
+	BORDER-LEFT: 1px solid white;
+	BORDER-RIGHT: 1px solid rgb(204, 204, 204);
+	height: 12px;
+}
+
+.tableRow2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: rgb(0, 0, 0);
+	font-size: 9pt;
+	font-weight: normal;
+	background-color: rgb(255, 255, 255);
+	margin: 0px;
+	padding: 0px;
+	vertical-align: middle;
+	border: 2px solid #000066;
+	BORDER-BOTTOM: none;
+	BORDER-TOP: none;
+	BORDER-LEFT: none;
+	BORDER-RIGHT: 2px solid #000066;
+}
+
+.renglons2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: rgb(0, 0, 0);
+	font-size: 9pt;
+	font-weight: normal;
+	text-align: center;
+	background-color: inherit;
+	BORDER-BOTTOM: 1px solid rgb(204, 204, 204);
+	BORDER-TOP: 1px solid white;
+	BORDER-LEFT: 1px solid white;
+	BORDER-RIGHT: 1px solid rgb(204, 204, 204);
+	height: 20px;
+}
+
+.renglons2Blue {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000099;
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+	background-color: inherit;
+	BORDER-BOTTOM: 1px solid rgb(204, 204, 204);
+	BORDER-TOP: 1px solid white;
+	BORDER-LEFT: 1px solid white;
+	BORDER-RIGHT: 1px solid rgb(204, 204, 204);
+	height: 25px;
+}
+
+.TextoAzul8 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000099;
+}
+
+.TextoAzul9 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000099;
+}
+
+.TextoAzul10 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: baseline;
+	padding-top: 3px;
+	color: #000099;
+}
+
+.TextoAzul12 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: baseline;
+	padding-top: 3px;
+	color: #000099;
+}
+
+.TextoNegro7Centro {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: normal;
+	vertical-align: middle;
+	color: #333333;
+}
+
+.TextoNegro7Izquierdo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: normal;
+	vertical-align: middle;
+	color: #333333;
+	padding-left: 5px;
+}
+
+.TextoNegro9 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000000;
+}
+
+.TextoNegro9Izquierdo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #333333;
+}
+
+.Texto10Centro {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000099;
+}
+
+.Texto10Izquierda {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: text-top;
+	color: #000099;
+}
+
+.Texto11Izquierda {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000099;
+}
+
+.Texto12Izquierda {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-style: normal;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #000099;
+}
+
+.TextoSinMano {
+	cursor: e-resize;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	color: navy;
+	vertical-align: middle;
+}
+
+.TituloCen {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-style: normal;
+	font-weight: bold;
+	text-align: center;
+	background-color: #FFFFFF;
+	vertical-align: middle;
+}
+
+.TituloFondoAmarillo12 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	background-color: #FBBB26;
+	text-align: left;
+	BORDER-TOP: 2px solid #000066;
+	BORDER-LEFT: hidden;
+	BORDER-BOTTOM: 2px solid #000066;
+	BORDER-RIGHT: hidden;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	vertical-align: middle;
+	color: #000066;
+}
+
+.TituloFondoGris {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+	background-color: #B7C6DD;
+	text-align: center;
+	border-top-style: double;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: none;
+	height: 20px;
+	border-top-width: thin;
+	border-bottom-width: thin;
+	padding-top: 3px;
+	border-top-color: #006699;
+	border-bottom-color: #006699;
+	vertical-align: middle;
+	color: #000066;
+}
+
+.TituloFondoGris10 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bold;
+	background-color: #B7C6DD;
+	text-align: center;
+	border-top-style: double;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: none;
+	border-top-width: thin;
+	border-bottom-width: thin;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border-top-color: #006699;
+	border-bottom-color: #006699;
+	vertical-align: middle;
+	color: #000066;
+}
+
+.TituloFondoGris12 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	background-color: #B7C6DD;
+	text-align: center;
+	border-top-style: double;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: none;
+	border-top-width: thin;
+	border-bottom-width: thin;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border-top-color: #006699;
+	border-bottom-color: #006699;
+	vertical-align: middle;
+	color: #000066;
+}
+
+.trigger {
+	cursor: hand;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	color: navy;
+	vertical-align: middle;
+}
+
+.TxtBoxInvisible {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #000099;
+	margin: 0px;
+	padding: 0px;
+	border: #FFCC00;
+	/*background-color: #FBBB26;*/
+}
+
+.TxtBoxInvisibleGris {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #000099;
+	margin: 0px;
+	padding: 0px;
+	border: #FFCC00;
+	background-color: #B7C6DD;
+}
+
+.Wingdings3 {
+	font-family: "Wingdings 3";
+	font-size: 9px;
+	font-weight: bold;
+	color: #000099;
+	text-align: left;
+	vertical-align: middle;
+	BORDER-TOP: 2px solid #FFFFFF;
+	BORDER-LEFT: 2px solid #FFFFFF;
+	BORDER-BOTTOM: #FFFFFF;
+	BORDER-RIGHT: 2px solid #000066;
+}
+
+.MontoNoTotal {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-align: right;;
+	font-weight: bold;
+	background-color: #ece9d8
+}
+
+.EtiquetaHijoFuentes {
+	font-family: Tahoma;
+	font-size: 8pt;
+	font-style: normal;
+	font-weight: bold;
+	vertical-align: text-bottom;
+	color: #000099;
+	height: 20px;
+}
+
+.TablaTitulo12_Fechas {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 14px;
+	font-style: normal;
+	text-align: center;
+	color: #000000;
+	border: none;
+	background: inherit;
+	font-weight: bold;
+	width: 80px;
+}
+
+.celdaGris {
+	background-color: #CCCCCC;
+}
+
+.celdaNoGris {
+	
+}
+
+.EtiquetaTxtBox10Centrado {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: normal;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+	padding-top: 3px;
+	color: #000099;
+}
+
+.celdaSinBordeBajo {
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+}
+
+.celdaSinBordeAlto {
+	border-top-width: 0px;
+	border-top-style: none;
+}
+
+.tituloNegrita {
+	font-weight: bold;
+	font-family: Arial;
+	font-size: 10pt;
+	text-align: center;;
+	font-style: normal;;
+	background-color: #d7d7d7;;
+	font-variant: normal
+}
+
+.tituloNegrita2 {
+	font-weight: bold;
+	font-family: Arial;
+	font-size: 10pt;
+	text-align: right;;
+	font-style: normal;;
+	background-color: #d7d7d7;;
+	font-variant: normal
+}
+
+.celdasSIAOIzquierda {
+	color: black;
+	vertical-align: middle;
+	font-size: 8pt;
+	text-align: left;
+}
+
+.celdasSIAOCentro {
+	color: black;
+	vertical-align: middle;
+	font-size: 9pt;
+	text-align: center;
+}
+
+.celdasSIAOCentroLink {
+	color: #000066;
+	vertical-align: middle;
+	font-size: 9pt;
+	text-align: center;;
+	cursor: hand;
+	font-weight: bold
+}
+
+.celdaSIAOTituloFaces {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #CCCCCC;
+	background-color: #0099FF;
+}
+
+LabelTxtBoxUnaCelda {
+	
+.onapre_logged_user_menu_content_separation{
+	width:2px;
+}
+.onapre_input_data_table{
+	border-style:none;
+	font-family:Arial;
+	text-align:right;
+	background:inherit;
+}
+.onapre_error_input_data_table{
+	background-color:Red;
+}
+
+/* OTROS ESTILOS */
+
+.scrollableAlign {
+	text-align: left;
+}
+
+.rich-sdt-header-cell {
+	font-style: italic;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 11px;
+	text-align: center;
+	height: 10px;
+}
+
+.rich-sdt-column-cell {
+	text-align: right;
+	font-family: Arial;
+	font-weight: normal;
+	font-size: 10px;
+	border-spacing: 0px;
+	border: none;
+}
+
+.rich-sdt-footer-cell {
+	text-align: right;
+	font-family: Arial;
+	font-weight: normal;
+	font-size: 10px;
+	border-spacing: 0px;
+	border: none;
+}
+
+.panelAlign {
+	text-align: left;
+}
+
+.top {
+	vertical-align: top;
+}
+
+.rich-table-header {
+	font-style: italic;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 14px;
+	text-align: center;
+	height: 30px;
+}

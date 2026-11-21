@@ -1,0 +1,36 @@
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+.vscode/
+.metadata/
+.settings/
+.classpath
+.project
+
+# CVS leftovers
+CVS/
+**/CVS/
+
+# Build
+build/
+bin/
+target/
+*.class
+*.war
+*.ear
+
+# Logs / temp
+*.log
+tmp/
+temp/
+
+# Secrets / local env
+.env
+.env.*
+*.jks
+*.keystore
+
+# Proprietary JDBC (obtener desde Oracle; no redistribuir)
+WebContent/WEB-INF/lib/ojdbc*.jar

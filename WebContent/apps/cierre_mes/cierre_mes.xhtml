@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+  	<ui:composition template="/templates/base_with_user_menu_tiii.xhtml">
+	<ui:define name="pageContent">		
+		 	
+		<h:form id="formCierre">
+			<p:panel style="width:1024px;" header="CIERRE DE MES">
+				<p:growl id="messages" showDetail="true" sticky="true" autoUpdate="true"  />
+				<p:growl id="messages_list" showDetail="true" autoUpdate="true" closable="true"/>			
+				<h:panelGrid columns="12">
+					<h:outputText value="Año" style="width:60px;"/>
+					<p:selectOneMenu id="anhosComboBox" styleClass="width:200px;" value="#{cierreMesBean.anhoSeleccionado}">
+						<f:selectItem itemLabel="Seleccione" itemValue="-1"/>
+						<f:selectItems value="#{cierreMesBean.anhosPresupuesto}"/>
+						<p:ajax event="change" update="formCierre" listener="#{cierreMesBean.limpiaArreglos}"/>	 
+					</p:selectOneMenu>
+					<p:spacer width="20" height="20" />
+					<h:outputText value="Mes:" style="width:60px;font-weight:bold;"/>			
+					<p:selectOneMenu  id="mesCmb" value="#{cierreMesBean.mesSeleccionado}">
+						<f:selectItem itemLabel="Seleccione" itemValue="-1"/>
+						<f:selectItem itemLabel="Enero" itemValue="1"/>
+						<f:selectItem itemLabel="Febrero" itemValue="2"/>
+						<f:selectItem itemLabel="Marzo" itemValue="3"/>
+						<f:selectItem itemLabel="Abril" itemValue="4"/>
+						<f:selectItem itemLabel="Mayo" itemValue="5"/>
+						<f:selectItem itemLabel="Junio" itemValue="6"/>
+						<f:selectItem itemLabel="Julio" itemValue="7"/>
+						<f:selectItem itemLabel="Agosto" itemValue="8"/>
+						<f:selectItem itemLabel="Septiembre" itemValue="9"/>
+						<f:selectItem itemLabel="Octubre" itemValue="10"/>
+						<f:selectItem itemLabel="Noviembre" itemValue="11"/>
+						<f:selectItem itemLabel="Diciembre" itemValue="12"/>
+						
+						<p:ajax event="change" update="formCierre" listener="#{cierreMesBean.limpiaArreglos}"/>				
+	                </p:selectOneMenu>
+	                <p:spacer width="20" height="20" />	                
+	                <p:commandButton id="guardarField" value="Cerrar de Mes" style="width:200px;float:right;display:#{cierreMesBean.doBloquearGuardar()}" actionListener="#{cierreMesBean.cerrarGuardar()}" oncomplete="dlg.show();"/>
+	                
+	                <p:dialog header="Confirmar" widgetVar="dlg"  dynamic="true" showEffect="fade" hideEffect="explode" modal="true">
+	                 	<h:panelGrid columns="12">
+	                	<h:outputText value="¿Esta Seguro de Cerrar Este Mes?" style="width:60px;"/>
+						<p:commandButton id="guardarField1" value="Cerrar de Mes" style="width:200px;float:right;" actionListener="#{cierreMesBean.doGuardarCierreMes()}" />
+						<p:commandButton value="Regresar" style="width:200px;float:right;" action="#{cierreMesBean.doRegresar}" />
+						</h:panelGrid>
+					</p:dialog>
+					
+				</h:panelGrid>
+				<p:spacer height="5"/>				         					
+			</p:panel>	
+		</h:form>
+		<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+		    <p:graphicImage value="../../../templates/images/ajaxloadingbar.gif" />
+		</p:dialog>
+	</ui:define>
+	</ui:composition>
+
+</html>

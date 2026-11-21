@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<script type="text/javascript">
+function openWindow(name, url) {
+	 
+	var height = screen.availHeight-30;
+	var width = screen.availWidth-10;
+	    
+	var left = 0;
+	var top = 0;
+	 
+	settings = 'fullscreen=no,resizable=yes,location=no,toolbar=no,menubar=no';
+	settings = settings + ',status=no,directories=no,scrollbars=yes';
+	settings = settings + ',width=' + width +',height=' + height;
+	settings = settings + ',top=' + top +',left=' + left;
+	settings = settings + ',charset=iso-8859-1';
+	var win = window.open(url, '', settings);
+	 
+	win.outerHeight = screen.availHeight;
+	win.outerWidth = screen.availWidth;
+	    
+	win.resizeTo(screen.availWidth, screen.availHeight);
+	 
+	if (!win.focus)
+	win.focus();
+	        
+	return win;
+	}
+	   
+</script>
+
+
+	<h:form id="titleBarForm">
+		<p:growl id="messagesTitle" showDetail="true" autoUpdate="true" closable="true" severity="info,error"/>
+		<p:spacer height="3"/>
+		<table style="text-align:right;width:1024px;">
+				<tr>
+					<td align="left">
+						<p:panelGrid columns="2">
+							<h:outputText value="Bienvenido (a):" style="text-align:left;width:80px;font-weight:bold;font-size:9px;padding: 0px;"/>
+							<h:outputText value="#{menuBean.usuarioTOLogeado.nombre}" style="text-align:left;font-weight:normal;font-size:9px;padding: 0px;"/>
+						</p:panelGrid>
+					</td>
+					<td align="right">
+						<p:panelGrid columns="2">
+							<h:outputText value="Organismo:" style="text-align:left;width:80px;font-weight:bold;font-size:9px;padding: 0px;"/>
+							<h:outputText value="#{menuBean.organoEnteReceptorSessionTO.codigoDenominacion}" style="text-align:left;font-weight:normal;font-size:9px;padding: 0px;"/>	
+						</p:panelGrid>
+					</td>
+				</tr>
+			</table>
+		<p:spacer height="3"/>
+
+	<p:menubar styleClass="ui-menubar" style="width: 1024px;" >
+		<p:menuitem value="Inicio" url="/faces/apps/menu/menu.xhtml" styleClass=".ui-menu-item" ajax="false"/>
+		<p:menuitem value="Aguinaldos por Tipo de Cargos" url="/faces/apps/recursos_humanos/aguinaldos_regionales.xhtml" styleClass=".ui-menu-item" ajax="false" rendered="#{menuBean.isUserInRol('AGUINALDO_REGIONES_REVISOR') || menuBean.isUserInRol('ADMIN') || menuBean.isUserInRol('AGUINALDO_REGIONES')}"/>
+		<p:menuitem value="Autoridades Responsables" url="/faces/apps/informacion_ente/autoridades_ente.xhtml" styleClass=".ui-menu-item" ajax="false" rendered="#{menuBean.isUserInRol('AGUINALDO_REGIONES_REVISOR') || menuBean.isUserInRol('ADMIN') || menuBean.isUserInRol('AGUINALDO_REGIONES')}"/>
+		<p:menuitem value="CAIF" url="/faces/apps/informacion_financiera/caif.xhtml" styleClass=".ui-menu-item" ajax="false" rendered="#{menuBean.isUserInRol('REGIONALES_PRESUP') || menuBean.isUserInRol('REGIONALES_PRESUP_ONAPRE') || menuBean.isUserInRol('ADMIN')}"/>
+		<p:menuitem value="Cambiar Organismo" url="/faces/apps/seleccion/seleccion_ente.xhtml?faces-redirect=true" styleClass=".ui-menu-item" ajax="false" rendered="#{aguinaldosRegionalesBean.isUserInRol('AGUINALDO_REGIONES_REVISOR') || menuBean.isUserInRol('REGIONALES_PRESUP_ONAPRE') || menuBean.isUserInRol('ADMIN')}"/>
+		<p:menuitem value="Reportes" url="/faces/apps/reportes/reportes.xhtml?faces-redirect=true" styleClass=".ui-menu-item" ajax="false" rendered="#{aguinaldosRegionalesBean.isUserInRol('AGUINALDO_REGIONES_REVISOR') || menuBean.isUserInRol('REGIONALES_PRESUP_ONAPRE')|| menuBean.isUserInRol('ADMIN')|| menuBean.isUserInRol('AUTORIDADES_SIGEPT')|| menuBean.isUserInRol('CONSULTA_CERTIFICADOS')}"/>
+		<f:facet name="options">  
+	        <p:commandButton value="Resetear Clave" action="#{menuBean.doResetarClave()}" style="margin-right:3px;"/>
+	        <p:commandButton value="Salir" onclick="window.close();" icon="ui-icon-extlink" style="margin-right:3px;"/>  
+	    </f:facet> 
+
+		
+	</p:menubar>
+	
+	<p:idleMonitor onactive="sessionTimeOutDialog.show();" timeout="#{session.maxInactiveInterval * 1000}" />
+	<p:dialog header="Session Caducada" widgetVar="sessionTimeOutDialog" modal="true" fixedCenter="true" closable="false" width="400" visible="false">
+	     <h:outputText value="La sessión ha caducado" />
+	     <input id="confirmBackToLogin" type="button" value="Presione" onclick="window.location='#{facesContext.externalContext.requestContextPath}/login/login.xhtml';" />
+	</p:dialog>
+</h:form>
+
+
+</html>

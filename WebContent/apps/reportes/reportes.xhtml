@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+  	<ui:composition template="/templates/base_with_user_menu_tiii.xhtml">
+	<ui:define name="pageContent">	
+		<h:form id="reportesForm">
+			<p:panel width="1024px" header="REPORTES" >
+				<p:growl id="messages_list" showDetail="true" autoUpdate="true" closable="false" />
+				<p:outputPanel id="linkOutput" >
+					<p:commandLink id="opc" oncomplete="dlg.show();" title="Información" rendered="#{autoridadesEnteBean.doVerificarAutoridad()}">
+						<h:outputText value="Para Generar los reportes debe completar la informacion de la autoridad del Ente en el Menu de Autoridades Responsables" styleClass="onapre_label_2_error" />				
+					</p:commandLink>
+				</p:outputPanel>
+				
+				<h:panelGrid columns="2" style="text-aling:left;">
+						<h:outputText value="Año" style="width:60px;"/>
+						<p:selectOneMenu id="anhosComboBox" styleClass="width:200px;" value="#{reportesBean.anhoSeleccionado}">
+							<f:selectItem itemLabel="Seleccione" itemValue="-1"/>
+							<f:selectItems value="#{reportesBean.anhosPresupuesto}"/>
+							<!-- <p:ajax event="change" update="reportesCmb" listener="#{reportesBean.limpiaTabla}"/> -->
+						</p:selectOneMenu>
+						<h:outputText value="Mes:" style="width:60px;" styleClass="width:200px;"/>			
+						<p:selectOneMenu  id="mesCmb" value="#{reportesBean.mesSeleccionado}">
+							<f:selectItem itemLabel="Seleccione" itemValue="-1"/>
+							<f:selectItem itemLabel="Enero" itemValue="1"/>
+							<f:selectItem itemLabel="Febrero" itemValue="2"/>
+							<f:selectItem itemLabel="Marzo" itemValue="3"/>
+							<f:selectItem itemLabel="Abril" itemValue="4"/>
+							<f:selectItem itemLabel="Mayo" itemValue="5"/>
+							<f:selectItem itemLabel="Junio" itemValue="6"/>
+							<f:selectItem itemLabel="Julio" itemValue="7"/>
+							<f:selectItem itemLabel="Agosto" itemValue="8"/>
+							<f:selectItem itemLabel="Septiembre" itemValue="9"/>
+							<f:selectItem itemLabel="Octubre" itemValue="10"/>
+							<f:selectItem itemLabel="Noviembre" itemValue="11"/>
+							<f:selectItem itemLabel="Diciembre" itemValue="12"/>
+							<!-- <p:ajax event="change" update="reportesCmb" listener="#{reportesBean.limpiaTabla}"/> -->				
+		                </p:selectOneMenu>
+					</h:panelGrid>		                
+	                <h:panelGrid columns="2" style=" width:1024px;">
+					<h:panelGrid columns="4">
+						<h:outputText value="Reporte" style="width:60px;"/>			
+						<p:selectOneMenu id="reportesCmb" styleClass="width:750px;" >
+							<f:selectItems value="#{reportesBean.reportes}"/>				
+		                </p:selectOneMenu>
+												
+					</h:panelGrid>
+				</h:panelGrid>
+			
+				<p:spacer height="10"/>
+				<table style="text-align:right;width:100%;">
+					<tr>
+						<td align="right">
+							<p:commandButton id="imprimir" icon="ui-icon-print" value="imprimir" onclick="PrimeFaces.monitorDownload(start,stop)" update="messages_list">
+								<p:fileDownload value="#{reportesBean.file}"/>
+							</p:commandButton>
+						</td>
+					</tr>
+				</table>
+			
+			</p:panel>
+
+		</h:form>
+	
+	</ui:define>
+	</ui:composition>
+	
+</html>

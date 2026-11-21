@@ -1,0 +1,4 @@
+<jboss-web>
+	<context-root>/SIS_EJEC</context-root>
+	<security-domain>java:/jaas/ONAPRE</security-domain>
+</jboss-web>

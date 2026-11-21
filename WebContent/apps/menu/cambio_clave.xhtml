@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<h:head>
+	<title>OFICINA NACIONAL DE PRESUPUESTO</title>
+	<h:outputStylesheet library="css" name="onapre_template.css"/>
+</h:head>
+
+<h:body style="text-align:center">
+	<h:graphicImage value="/templates/images/fondo_sistemas.png" styleClass="full-screen-background-image"/>
+	<h:form>
+	
+			<center>
+				<table>
+					<tr>
+						<td>
+							<h:graphicImage value="/templates/images/membrete.png" />
+						</td>
+					</tr>
+				</table>
+			</center>
+		<p:spacer height="100px" />
+		<p:growl id="mensaje" showDetail="true" sticky="true"/>
+			
+			<p:fieldset legend="Cambio de Contraseña" style="width:400px;margin-left: 30%;text-align:left" >					
+				<h:outputLabel value="#{cambioClaveBean.usuarioTOLogeado.nombre}" style="font-size:14px;"/>
+				<br />
+				<br />
+				<h:panelGrid columns="2" style="text-align:center;" border="0" id="panel">
+
+					<h:outputLabel value="Nueva Contraseña:"  style="font-size:12px;" />
+					<h:inputSecret id="clave" style="width:120px;font-size:12px;"/>
+					<h:outputLabel value="Confirmar Contraseña:"  style="font-size:12px;" />
+					<h:inputSecret id="claveConfirmar" style="width:120px;font-size:12px;" />
+					<p:commandButton value="Aceptar" action="#{cambioClaveBean.doAceptar()}" update="mensaje
+					
+					"/>
+					<p:commandLink action="#{menuBean.doLogin()}" ajax="false">
+						<h:outputLabel value="Inicio" />
+					</p:commandLink>
+					
+				</h:panelGrid>
+			</p:fieldset>
+	
+
+		
+	
+
+	</h:form>
+</h:body>
+</html>
