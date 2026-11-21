@@ -1,134 +1,140 @@
 # SISPRE — Ejecución Financiera (Título III)
 
-Capa web del **Sistema para el Control y Seguimiento de la Ejecución Financiera de los Entes Descentralizados** (SISPRE), desarrollado para la **Oficina Nacional de Presupuesto (ONAPRE)** de Venezuela.
-
-Este repositorio publica el **módulo web de ejecución (Título III)** como portafolio histórico: captura de saldos, modificaciones presupuestarias, ejecución mensual, cierre de mes, reportes y administración de usuarios por ente.
-
-> **Alcance:** solo el *web tier* (JSF / Facelets). La lógica de negocio vive en EJBs externos del ecosistema ONAPRE (`ve.gob.onapre.*`) desplegados en el mismo servidor de aplicaciones.
+> **Proyecto de ejemplo / portafolio.**  
+> Este repositorio existe para **visualizar y revisar el código** construido en el módulo web de ejecución financiera de SISPRE. No es un producto oficial redeployable ni un entorno listo para producción: es una muestra técnica del trabajo realizado en esa aplicación.
 
 ---
 
-## Qué hace el sistema
+## Contexto
 
-Tras autenticarse, el usuario selecciona el **ente / órgano** y trabaja sobre el ejercicio presupuestario activo:
+**SISPRE** (Sistema para el Control y Seguimiento de la Ejecución Financiera de los Entes Descentralizados) fue desarrollado para la **Oficina Nacional de Presupuesto (ONAPRE)** de Venezuela.
 
-| Módulo | Descripción |
-|--------|-------------|
-| **Saldo inicial de caja** | Registro del saldo de apertura por fuente / estructura |
-| **Modificaciones de recursos** | Ajustes presupuestarios del lado de ingresos |
-| **Modificaciones de egresos** | Ajustes presupuestarios del lado de gastos |
-| **Ejecución mensual (recursos)** | Carga y seguimiento de la ejecución de ingresos del mes |
-| **Ejecución mensual (egresos)** | Carga y seguimiento de la ejecución de gastos del mes |
-| **Cierre de mes** | Cierre formal del período (roles ONAPRE / admin) |
-| **Reportes** | Generación PDF con JasperReports |
-| **Usuarios** | Administración de usuarios del módulo de ejecución |
-| **Cambiar organismo** | Reasignación del ente en sesión |
-
-El menú se renderiza según **roles JAAS** (`ADMIN`, `EJECUCION_TIII_ENTE`, `EJECUCION_TIII_ONAPRE`, `CONSULTA_EJEC_TIII`, `ADMIN_USER_EJEC_TIII`, etc.).
+Lo que verás aquí es la **capa web del módulo de Ejecución (Título III)**: pantallas JSF, managed beans, menús por rol, reportes y el flujo de trabajo del usuario final. Sirve para entender cómo estaba armada la UI y cómo se conectaba al backend institucional.
 
 ---
 
-## Stack tecnológico
+## Qué puedes ver en este código
 
-| Capa | Tecnología |
+Tras el login, el usuario elige un **ente / órgano** y opera sobre el ejercicio presupuestario activo. Los módulos incluidos son:
+
+| Módulo | Qué hace |
+|--------|----------|
+| Saldo inicial de caja | Apertura de saldos por fuente / estructura |
+| Modificaciones de recursos | Ajustes presupuestarios de ingresos |
+| Modificaciones de egresos | Ajustes presupuestarios de gastos |
+| Ejecución mensual (recursos / egresos) | Carga y seguimiento de la ejecución del mes |
+| Cierre de mes | Cierre formal del período |
+| Reportes | Generación de PDF (JasperReports) |
+| Usuarios | Administración de usuarios del módulo |
+| Cambiar organismo | Cambio del ente en sesión |
+
+La visibilidad del menú depende de roles JAAS (`ADMIN`, `EJECUCION_TIII_ENTE`, `EJECUCION_TIII_ONAPRE`, `CONSULTA_EJEC_TIII`, etc.).
+
+---
+
+## Stack
+
+| Área | Tecnología |
 |------|------------|
-| UI | JSF 2.1 (Mojarra), Facelets (XHTML), PrimeFaces 4.0 + Extensions, tema Redmond, Apache MyFaces Tomahawk |
-| Contenedor | JBoss AS 7.1 / EAP (Eclipse Dynamic Web Project, Java 6, Servlet 3.0) |
-| Seguridad | JAAS (`security-domain` `ONAPRE`), constraints en `web.xml` |
-| Reportes | JasperReports 5 + iText / Barcode4J / Batik |
-| Persistencia (vía EJB) | Oracle Database (driver JDBC **no incluido**; ver notas) |
-| Idioma UI | Español (`faces-config.xml`) |
+| UI | JSF 2.1 (Mojarra), Facelets (XHTML), PrimeFaces 4.0 + Extensions, tema Redmond, Tomahawk |
+| Servidor | JBoss AS 7.1 / EAP · Eclipse Dynamic Web Project · Java 6 · Servlet 3.0 |
+| Seguridad | JAAS (`security-domain` `ONAPRE`) + constraints en `web.xml` |
+| Reportes | JasperReports 5, iText, Barcode4J, Batik |
+| Datos (vía EJB) | Oracle Database |
 
 **Context root:** `/SIS_EJEC`  
-**Entrada:** `faces/apps/seleccion/seleccion_ente.xhtml` (post-login) / `login/login.xhtml`
+**Pantallas de entrada:** `login/login.xhtml` · `faces/apps/seleccion/seleccion_ente.xhtml`
 
 ---
 
-## Estructura del proyecto
+## Importante sobre el alcance
+
+Este repo contiene **solo el web tier**. La lógica de negocio vive en EJBs externos del ecosistema ONAPRE (`ve.gob.onapre.*`), desplegados junto a esta aplicación en JBoss.
+
+En otras palabras:
+
+- Aquí puedes **leer** pantallas, beans, navegación, roles y reportes.
+- Para **ejecutarlo de punta a punta** harían falta esos EJBs, el datasource Oracle y la configuración institucional original.
+
+---
+
+## Estructura
 
 ```text
 onapre-sispre-ejecucion-web/
-├── src/                          # Managed beans, listeners, utilidades
-│   ├── pagecode/apps/            # Beans por módulo (login, saldo, ejecución…)
-│   ├── pagecode/template/        # MenuBean y navegación
-│   ├── apps/onapre/sispre/       # ServletContextListener (precarga año fiscal)
-│   └── atributes/                # Claves de sesión / application map
+├── src/                     # Managed beans, listeners y utilidades
+│   ├── pagecode/apps/       # Beans por módulo (login, saldo, ejecución…)
+│   ├── pagecode/template/   # Menú y navegación
+│   ├── apps/onapre/sispre/  # Precarga del año presupuestario
+│   └── atributes/           # Claves de sesión / application map
 ├── WebContent/
-│   ├── apps/                     # Pantallas XHTML por módulo
-│   ├── login/                    # Login + captcha
-│   ├── templates/                # Layouts y menú Título III
-│   ├── resources/                # CSS / JS / imágenes
-│   └── WEB-INF/
-│       ├── web.xml               # Faces Servlet, roles, session timeout
-│       ├── faces-config.xml
-│       ├── jboss-web.xml         # context-root + security-domain
-│       └── lib/                  # Dependencias embebidas (sin ojdbc)
+│   ├── apps/                # Pantallas XHTML
+│   ├── login/               # Login + captcha
+│   ├── templates/           # Layouts y menú Título III
+│   ├── resources/           # CSS, JS e imágenes
+│   └── WEB-INF/             # web.xml, faces-config, libs
 └── README.md
 ```
 
-Arquitectura típica de la época: **WAR (esta app) + EARs/JARs EJB** en el mismo JBoss, con lookups JNDI (`LookUpNames`) hacia servicios locales.
+Patrón típico de la época: **WAR (esta app) + módulos EJB** en el mismo servidor, con lookups JNDI (`LookUpNames`).
 
 ---
 
-## Requisitos para ejecutar (legado)
-
-Este código **no es un proyecto Maven/Gradle autónomo**. Para levantarlo hace falta el entorno institucional original (o un equivalente):
-
-1. **JDK 6/7** compatible con el runtime JBoss 7.1  
-2. **JBoss AS 7.1** (o EAP 6.x) con el *security domain* `ONAPRE` configurado  
-3. **Módulos EJB ONAPRE** desplegados (usuarios, estructura presupuestaria, ejecución Título III, comunes, etc.)  
-4. **Datasource Oracle** referenciado por los EJBs (`CoDatabaseManager.ONAPRE`)  
-5. Driver **Oracle JDBC** (`ojdbc`) en el servidor o en `WEB-INF/lib` — **no se redistribuye** en este repo por licencia Oracle  
-6. Importar en **Eclipse** como *Dynamic Web Project* o empaquetar el WAR apuntando `WebContent` + `src`
-
-Sin los EJBs y la base, la UI arranca de forma limitada: los `@EJB` / `@Resource` fallarán en runtime.
-
----
-
-## Flujo funcional (alto nivel)
+## Flujo funcional (resumen)
 
 ```text
 Login (JAAS + CAPTCHA)
-   → ¿clave por defecto? → cambio de clave
-   → ¿varios entes? → selección de ente
-   → menú Título III
-        → saldo / modificaciones / ejecución / cierre / reportes / usuarios
+  → clave por defecto → cambio de clave
+  → varios entes → selección de ente
+  → menú Título III
+       → saldo / modificaciones / ejecución / cierre / reportes / usuarios
 ```
 
-Al iniciar la aplicación, `PreCargaDatos_SIS_EJEC` carga en el `ServletContext` el **año presupuestario activo**, rutas de reportes e histórico de años.
+Al arrancar, `PreCargaDatos_SIS_EJEC` carga en el `ServletContext` el año presupuestario activo, las rutas de reportes y el histórico de años.
 
 ---
 
-## Dependencias embebidas (`WEB-INF/lib`)
+## Cómo se desplegaba (referencia)
 
-Incluidas (open source / runtime de reportes y UI):
+No es un proyecto Maven/Gradle autónomo. El entorno original incluía, a grandes rasgos:
 
-- PrimeFaces 4.0, PrimeFaces Extensions, tema Redmond  
-- Tomahawk 2.0  
-- JasperReports 5.0.1 (+ fonts), iText, Barcode4J, Batik  
-- Commons BeanUtils / Collections / Digester / Logging  
-- Groovy, Xerces  
+1. JDK 6/7 + JBoss AS 7.1 (o EAP 6.x) con el security domain `ONAPRE`
+2. Módulos EJB ONAPRE (usuarios, estructura presupuestaria, ejecución Título III, comunes…)
+3. Datasource Oracle usado por los EJBs
+4. Driver Oracle JDBC (`ojdbc`) en el servidor o en `WEB-INF/lib` — **no se incluye** en este repo por licencia
+5. Importación en Eclipse como *Dynamic Web Project* (o empaquetado WAR de `WebContent` + `src`)
 
-**Excluida a propósito:**
-
-- `ojdbc14.jar` — driver Oracle; descárgalo desde Oracle y colócalo en `WebContent/WEB-INF/lib/` o en el módulo JDBC de JBoss.
+Sin los EJBs y la base, la UI no completa el ciclo: los `@EJB` / `@Resource` fallan en runtime. Eso es esperado en este repositorio de ejemplo.
 
 ---
 
-## Notas de portafolio
+## Dependencias en `WEB-INF/lib`
 
-- Proyecto **legacy** (~2015–2017): Eclipse + JBoss + JSF/PrimeFaces, típico del stack institucional de la época.  
-- Demuestra dominio de: **presupuestación pública**, **roles/seguridad por ente**, **cierre mensual**, **reportes PDF** y **integración EJB**.  
-- Publicado con fines de **portafolio / referencia histórica**. La marca ONAPRE y los derechos institucionales pertenecen a la Oficina Nacional de Presupuesto; este repositorio documenta el trabajo de desarrollo del módulo web.
+Incluidas (UI / reportes):
+
+- PrimeFaces 4.0, Extensions y tema Redmond
+- Tomahawk 2.0
+- JasperReports 5.0.1 (+ fonts), iText, Barcode4J, Batik
+- Commons BeanUtils / Collections / Digester / Logging
+- Groovy, Xerces
+
+Excluida:
+
+- `ojdbc14.jar` (driver Oracle; obtenerlo desde Oracle si se necesita para un entorno local)
+
+---
+
+## Objetivo de este repositorio
+
+- Mostrar código real de un sistema de **presupuestación pública** (ejecución financiera).
+- Ilustrar un stack legacy típico: **JSF + PrimeFaces + EJB + JBoss + Oracle**.
+- Servir como pieza de **portafolio** para revisar arquitectura, módulos y estilo de implementación.
+
+La marca ONAPRE y los derechos institucionales pertenecen a la Oficina Nacional de Presupuesto. Este repo documenta el trabajo de desarrollo del módulo web con fines de ejemplo y referencia.
 
 ---
 
 ## Autor
 
-**Luis Guillermo Valles Velásquez** — desarrollo del módulo web de ejecución SISPRE (ONAPRE).
-
----
-
-## Licencia
-
-Código de portafolio. Sin licencia open source otorgada por ONAPRE en este repositorio: úsalo como referencia de arquitectura y experiencia, no como producto oficial redeployable.
+**Luis Guillermo Valles Velásquez**  
+Desarrollo del módulo web de ejecución SISPRE (ONAPRE).
